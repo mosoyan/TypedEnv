@@ -104,31 +104,6 @@ let token = Env.api.auth.token.optional(String.self)
 
 ---
 
-### RoutingKit (optional)
-
-If `RoutingKit` is available:
-
-```swift
-let route = try Env.api.route.asPathComponents()
-```
-
----
-
-### NIOCore (optional)
-
-If `NIOCore` is available:
-
-```swift
-let timeout = try Env.api.timeout.asTimeAmount()
-```
-
-Supported formats:
-- `"1h"` → 1 hour
-- `"30m"` → 30 minutes
-- `"45s"` → 45 seconds
-
----
-
 ## 🧱 How it works
 
 TypedEnv transforms chained properties into environment keys:
