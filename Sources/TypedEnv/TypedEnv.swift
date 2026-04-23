@@ -132,20 +132,20 @@ public struct Environment: Sendable {
     }
 
     /// Accessor for the configured provider.
-    static var provider: any EnvironmentProvider {
+    public static var provider: any EnvironmentProvider {
         _provider
     }
 
     // MARK: Root Subscripts
 
     /// Overload A: Starts the chain from the root (e.g., `Env.api...`)
-    static subscript(dynamicMember member: String) -> EnvironmentNamespace {
+    public static subscript(dynamicMember member: String) -> EnvironmentNamespace {
         let component = EnvironmentNamespace.formatKey(member)
         return EnvironmentNamespace(prefix: component, provider: provider)
     }
 
     /// Overload B: Root-level fetch (e.g., `let port: Int = try Env.port`)
-    static subscript<T: LosslessStringConvertible>(dynamicMember member: String) -> T {
+    public static subscript<T: LosslessStringConvertible>(dynamicMember member: String) -> T {
         get throws {
             let environmentKey = EnvironmentNamespace.formatKey(member)
 
