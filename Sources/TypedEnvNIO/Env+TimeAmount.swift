@@ -11,12 +11,12 @@ import NIOCore
 import TypedEnv
 #endif
 
-public extension EnvironmentNamespace {
+extension EnvironmentNamespace {
 
 #if canImport(NIOCore)
     /// Overload C: Automatically converts string values (e.g., "1h", "30m") to `TimeAmount`.
     /// Terminates the chain and fetches the value.
-    subscript(dynamicMember member: String) -> TimeAmount {
+    public subscript(dynamicMember member: String) -> TimeAmount {
         get throws {
             let stringValue: String = try self[dynamicMember: member]
             return parseTimeAmount(from: stringValue) ?? .zero
@@ -26,7 +26,7 @@ public extension EnvironmentNamespace {
 
 #if canImport(NIOCore)
     /// Explicitly fetches the current accumulated namespace path as `TimeAmount`.
-    func asTimeAmount() throws -> TimeAmount {
+    public func asTimeAmount() throws -> TimeAmount {
         let string: String = try self.as(String.self)
         return parseTimeAmount(from: string) ?? .zero
     }

@@ -10,12 +10,11 @@ import RoutingKit
 import TypedEnv
 #endif
 
-public extension EnvironmentNamespace {
-
+extension EnvironmentNamespace {
 #if canImport(RoutingKit)
     /// Overload B: Automatically converts string paths to Vapor's `[PathComponent]`.
     /// Terminates the chain and fetches the value.
-    subscript(dynamicMember member: String) -> [PathComponent] {
+    public subscript(dynamicMember member: String) -> [PathComponent] {
         get throws {
             // Fetch the raw string using the existing LosslessStringConvertible subscript
             let stringValue: String = try self[dynamicMember: member]
@@ -26,7 +25,7 @@ public extension EnvironmentNamespace {
 
 #if canImport(RoutingKit)
     /// Explicitly fetches the current accumulated namespace path as `[PathComponent]`.
-    func asPathComponents() throws -> [PathComponent] {
+    public func asPathComponents() throws -> [PathComponent] {
         let string: String = try self.as(String.self)
         return string.pathComponents
     }
